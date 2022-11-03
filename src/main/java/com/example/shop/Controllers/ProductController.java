@@ -1,9 +1,7 @@
 package com.example.shop.Controllers;
 
 import com.example.shop.Models.Product;
-import com.example.shop.Models.User;
 import com.example.shop.Repositories.ProductRepository;
-import com.example.shop.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,6 +60,9 @@ public class ProductController {
             }
             if (updateProduct.getPrice() == 0) {
                 updateProduct.setPrice(prod.getPrice());
+            }
+            if (updateProduct.getImage() == null) {
+                updateProduct.setImage(prod.getImage());
             }
             updateProduct.setId(id);
             productRepository.patchProduct(updateProduct);

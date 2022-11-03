@@ -14,4 +14,5 @@ public class Product {
     private float price;
     private String description;
     private int category;
+    private String image;
 }

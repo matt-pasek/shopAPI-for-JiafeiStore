@@ -25,11 +25,12 @@ public class ProductRepository {
 
     public int addProduct(LinkedList<Product> prods) {
         for (Product prod : prods) {
-            jdbcTemplate.update("insert into product(name,price,description,category) values (?,?,?,?)",
+            jdbcTemplate.update("insert into product(name,price,description,category,image) values (?,?,?,?,?)",
                     prod.getName(),
                     prod.getPrice(),
                     prod.getDescription(),
-                    prod.getCategory()
+                    prod.getCategory(),
+                    prod.getImage()
             );
         }
         return 0;
@@ -40,21 +41,23 @@ public class ProductRepository {
     }
 
     public void updateProduct(Product prod) {
-        jdbcTemplate.update("Update product set name=?,price=?,description=?,category=? where id=?",
+        jdbcTemplate.update("Update product set name=?,price=?,description=?,category=?,image=? where id=?",
                 prod.getName(),
                 prod.getPrice(),
                 prod.getDescription(),
                 prod.getCategory(),
+                prod.getImage(),
                 prod.getId()
         );
     }
 
     public void patchProduct(Product prod) {
-        jdbcTemplate.update("Update product set name=?,price=?,description=?,category=? where id=?",
+        jdbcTemplate.update("Update product set name=?,price=?,description=?,category=?,image=? where id=?",
                 prod.getName(),
                 prod.getPrice(),
                 prod.getDescription(),
                 prod.getCategory(),
+                prod.getImage(),
                 prod.getId()
         );
     }
