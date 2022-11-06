@@ -27,8 +27,8 @@ public class UserController {
         return userRepository.getUserById(id);
     }
     @PostMapping("")
-    public int addUser(@RequestBody LinkedList<User> users){
-        return userRepository.addUsers(users);
+    public int addUser(@RequestBody User user){
+        return userRepository.addUser(user);
     }
 
     @DeleteMapping("{id}")

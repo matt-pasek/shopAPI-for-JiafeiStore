@@ -24,16 +24,14 @@ public class UserRepository {
     }
 
 
-    public int addUsers(LinkedList<User> users) {
-        for (User user : users) {
-            jdbcTemplate.update("insert into user(name,surname,email,role, password) values (?,?,?,?,?)",
-                    user.getName(),
-                    user.getSurName(),
-                    user.getEmail(),
-                    user.getRole(),
-                    user.getPassword()
-            );
-        }
+    public int addUser(User user) {
+        jdbcTemplate.update("insert into user(name,surname,email,role, password) values (?,?,?,?,?)",
+                user.getName(),
+                user.getSurName(),
+                user.getEmail(),
+                user.getRole(),
+                user.getPassword()
+        );
         return 0;
     }
 
