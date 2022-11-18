@@ -24,8 +24,8 @@ public class ProductController {
     }
 
     @PostMapping("")
-    public int addProduct(@RequestBody LinkedList<Product> prods){
-        return productRepository.addProduct(prods);
+    public int addProduct(@RequestBody Product prod){
+        return productRepository.addProduct(prod);
     }
 
     @DeleteMapping("{id}")

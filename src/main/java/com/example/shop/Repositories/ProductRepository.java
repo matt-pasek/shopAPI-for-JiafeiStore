@@ -23,8 +23,7 @@ public class ProductRepository {
     }
 
 
-    public int addProduct(LinkedList<Product> prods) {
-        for (Product prod : prods) {
+    public int addProduct(Product prod) {
             jdbcTemplate.update("insert into product(name,price,description,category,image) values (?,?,?,?,?)",
                     prod.getName(),
                     prod.getPrice(),
@@ -32,7 +31,6 @@ public class ProductRepository {
                     prod.getCategory(),
                     prod.getImage()
             );
-        }
         return 0;
     }
 
