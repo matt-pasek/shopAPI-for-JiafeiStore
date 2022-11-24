@@ -16,16 +16,16 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<User> getAllUsers() {
-        return jdbcTemplate.query("select * from user", BeanPropertyRowMapper.newInstance(User.class));
+        return jdbcTemplate.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
     }
 
     public User getUserById(int id) {
-        return jdbcTemplate.queryForObject("select * from user where id = ?", BeanPropertyRowMapper.newInstance(User.class), id);
+        return jdbcTemplate.queryForObject("select * from users where id = ?", BeanPropertyRowMapper.newInstance(User.class), id);
     }
 
 
     public int addUser(User user) {
-        jdbcTemplate.update("insert into user(name,surname,email,role, password) values (?,?,?,?,?)",
+        jdbcTemplate.update("insert into users(name,surname,email,role, password) values (?,?,?,?,?)",
                 user.getName(),
                 user.getSurName(),
                 user.getEmail(),
@@ -36,11 +36,11 @@ public class UserRepository {
     }
 
     public int deleteUserById(int id){
-        return jdbcTemplate.update("delete from user where id = ?", id);
+        return jdbcTemplate.update("delete from users where id = ?", id);
     }
 
     public int updateUser(User user) {
-        return jdbcTemplate.update("Update user set name=?,surname=?,email=?,role=?, password=? where id=?",
+        return jdbcTemplate.update("Update users set name=?,surname=?,email=?,role=?, password=? where id=?",
                 user.getName(),
                 user.getSurName(),
                 user.getEmail(),
@@ -51,7 +51,7 @@ public class UserRepository {
     }
 
     public int patchUser(User user) {
-        return jdbcTemplate.update("Update user set name=?,surname=?,email=?,role=?, password=? where id=?",
+        return jdbcTemplate.update("Update users set name=?,surname=?,email=?,role=?, password=? where id=?",
                 user.getName(),
                 user.getSurName(),
                 user.getEmail(),
