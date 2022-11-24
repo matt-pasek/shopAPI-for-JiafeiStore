@@ -15,7 +15,7 @@ public class OrderRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Order> getAllOrders() {
-        return jdbcTemplate.query("select * from orders", BeanPropertyRowMapper.newInstance(Order.class));
+        return jdbcTemplate.query("select * from 'order'", BeanPropertyRowMapper.newInstance(Order.class));
     }
 
     public List<OrderContent> getOrderContentById(int id) {
@@ -23,13 +23,14 @@ public class OrderRepository {
     }
 
     public Order getOrderById(int id) {
-        var order = jdbcTemplate.queryForObject("select * from order where id = ?", BeanPropertyRowMapper.newInstance(Order.class), id);
+        var order = jdbcTemplate.queryForObject("select * from 'order' where id = ?", BeanPropertyRowMapper.newInstance(Order.class), id);
         var content = getOrderContentById(id);
+        assert order != null;
         return new Order(order.getId(), order.getUser_id(), order.getDate(), content);
     }
 
     public int addOrder(Order order) {
-        jdbcTemplate.update("insert into order (user_id, date) values (?,?)",
+        jdbcTemplate.update("insert into 'order' (user_id, date) values (?,?)",
                 order.getUser_id(),
                 order.getDate()
         );
@@ -46,7 +47,7 @@ public class OrderRepository {
 
     public int deleteOrderById(int id){
         jdbcTemplate.update("delete from order_content where order_id = ?", id);
-        jdbcTemplate.update("delete from order where id = ?", id);
+        jdbcTemplate.update("delete from 'order' where id = ?", id);
         return 0;
     }
 }

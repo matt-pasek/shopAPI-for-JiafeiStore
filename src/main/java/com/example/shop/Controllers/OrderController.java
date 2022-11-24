@@ -30,7 +30,7 @@ public class OrderController {
         return orderRepository.addOrder(order);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public int deleteOrderById(@PathVariable("id") int id){
         return orderRepository.deleteOrderById(id);
     }
